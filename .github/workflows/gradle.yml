@@ -28,7 +28,15 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'
-    - name: Build with Gradle
+        
+    - name: Start containers
+      run: docker-compose -f "docker-compose.yml" up -d --build
+      
+    - name: Start Tests
       uses: gradle/gradle-build-action@bd5760595778326ba7f1441bcf7e88b49de61a25 # v2.6.0
       with:
-        arguments: build
+        arguments: test
+
+    - name: Stop containers
+      if: always()
+      run: docker-compose -f "docker-compose.yml" down
