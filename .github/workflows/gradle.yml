@@ -34,7 +34,7 @@ jobs:
       run: sleep 30s
     - name: "Run test"
       run: |
-            docker ps
+            docker ps -a
             ./gradlew test
     - name: "Stop containers"
       if: always()
