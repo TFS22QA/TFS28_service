@@ -30,11 +30,10 @@ jobs:
       uses: gradle/gradle-build-action@v2
     - name: "Start container"
       run: docker-compose -f "docker-compose.yml" up -d
-    - name: "Wait start containers"
-      run: sleep 30s
+    - name: "Check logs"
+      run: docker logs app
     - name: "Run test"
       run: |
-            docker logs app
             docker ps -a
             ./gradlew test
     - name: "Stop containers"
