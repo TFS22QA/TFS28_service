@@ -12,7 +12,6 @@ services:
       - "5432:5432"
   service:
     image: anshemonaev/fsi:latest
-    platform: linux/amd64
     container_name: app
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/example_db
