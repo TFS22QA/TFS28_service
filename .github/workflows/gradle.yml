@@ -28,9 +28,12 @@ jobs:
         distribution: 'temurin'  
     - name: "Setup Gradle"
       uses: gradle/gradle-build-action@v2
+    - name: "Start container"
+      run: docker-compose -f "docker-compose.yml" up -d
+    - name: "Wait start containers"
+      run: sleep 30s
     - name: "Run test"
       run: |
-            docker-compose -f "docker-compose.yml" up -d
             docker ps
             ./gradlew test
     - name: "Stop containers"
