@@ -26,14 +26,13 @@ jobs:
       with:
         java-version: '17'
         distribution: 'temurin'  
-    - name: "Start containers"
-      run: docker-compose -f "docker-compose.yml" up -d
-    - name: "Wait for docker to finish building"
-      run: sleep 30
     - name: "Setup Gradle"
       uses: gradle/gradle-build-action@v2
     - name: "Run test"
-      run: ./gradlew test --stacktrace
+      run: |
+            docker-compose -f "docker-compose.yml" up -d --wait
+            docker ps
+            ./gradlew test
     - name: "Stop containers"
       if: always()
       run: docker-compose -f "docker-compose.yml" down
