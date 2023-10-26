@@ -30,7 +30,8 @@ jobs:
       uses: gradle/gradle-build-action@v2
     - name: "Run test"
       run: |
-            docker-compose -f "docker-compose.yml" up -d --wait
+            docker-compose -f "docker-compose.yml" up -d
+            wait 30
             docker ps
             ./gradlew test
     - name: "Stop containers"
