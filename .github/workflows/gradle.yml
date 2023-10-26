@@ -31,7 +31,6 @@ jobs:
     - name: "Run test"
       run: |
             docker-compose -f "docker-compose.yml" up -d
-            wait 30
             docker ps
             ./gradlew test
     - name: "Stop containers"
