@@ -1,7 +1,10 @@
+import com.adarshr.gradle.testlogger.theme.ThemeType
+
 plugins {
     id("java")
     id("org.springframework.boot") version "2.6.7"
     id("io.spring.dependency-management") version "1.1.0"
+    id("com.adarshr.test-logger") version "4.0.0"
 }
 
 group = "ru.tinkoff.fintech.qa"
@@ -29,12 +32,17 @@ dependencies {
     testImplementation("io.rest-assured:rest-assured:4.1.2")
 
 
+
     //db
     implementation("org.postgresql:postgresql:42.4.3")
 
     //tests
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("org.junit.jupiter:junit-jupiter:5.7.0")
+}
+
+testlogger{
+    theme = ThemeType.MOCHA
 }
 
 tasks.test {
