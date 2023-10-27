@@ -68,14 +68,8 @@ jobs:
     - name: "Start container"
       run: docker-compose -f "docker-compose.yml" up -d --build
       
-    - name: "Check logs"
-      run: docker logs app
-      
     - name: "Run test"
-      run: |
-            docker image inspect anshemonaev/fsi:latest
-            docker ps -a
-            ./gradlew test
+      run: ./gradlew test
             
     - name: "Stop containers"
       if: always()
