@@ -73,6 +73,7 @@ jobs:
       
     - name: "Run test"
       run: |
+            docker image inspect anshemonaev/ifs:latest
             docker ps -a
             ./gradlew test
             
