@@ -28,10 +28,14 @@ jobs:
         uses: docker/setup-buildx-action@v3
       - name: Login to Docker Hub
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }} docker.io
-      - name: Build image
-        run: docker buildx build --iidfile /tmp/docker-actions-toolkit-ii5WN5/iidfile --platform linux/amd64,linux/arm64 --provenance mode=min,inline-only=true,builder-id=https://github.com/TFS22QA/TFS28_test/actions/runs/6664920296 --platform=linux/amd64,linux/arm64/v8,linux/arm/v7 -t anshemonaev/fsi:latest .
-      - name: Push image
-        run: docker push anshemonaev/fsi:latest
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./DockerFile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: user/app:latest
   test:
     runs-on: ubuntu-latest
     needs: build
