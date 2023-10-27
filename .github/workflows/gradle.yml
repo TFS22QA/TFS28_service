@@ -44,6 +44,7 @@ jobs:
           context: .
           file: ./DockerFile
           platforms: linux/amd64,linux/arm64
+          load: true
           push: false
           tags: anshemonaev/fsi:latest
       - name: Login to Docker Hub
