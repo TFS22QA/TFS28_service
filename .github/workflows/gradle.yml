@@ -47,9 +47,9 @@ jobs:
           push: false
           tags: anshemonaev/fsi:latest
       - name: Login to Docker Hub
-        run: | 
-              docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }} docker.io
-              docker docker image ls
+        run: |
+             docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_TOKEN }} docker.io
+             docker image ls
       - name: Push image
         run: docker push anshemonaev/fsi:latest
   test:
