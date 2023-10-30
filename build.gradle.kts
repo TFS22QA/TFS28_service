@@ -31,8 +31,6 @@ dependencies {
     testImplementation("io.rest-assured:rest-assured-all:4.1.2")
     testImplementation("io.rest-assured:rest-assured:4.1.2")
 
-
-
     //db
     implementation("org.postgresql:postgresql:42.4.3")
 
